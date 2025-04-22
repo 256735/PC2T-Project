@@ -11,8 +11,20 @@ public class Student_KB extends Student {
 
 	@Override
 	public String skill(String kod) {
-		// TODO Auto-generated method stub
-		return null;
+	    String input = getName() + " " + getSurname();
+	    try {
+	        java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
+	        byte[] hashBytes = digest.digest(input.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+
+	        String hash = "";
+	        for (byte b : hashBytes) {
+	            hash += String.format("%02x", b);
+	        }
+	        return hash;
+
+	    } catch (java.security.NoSuchAlgorithmException e) {
+	        return "Chyba při generování hashe";
+	    }
 	}
 
 }

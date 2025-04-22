@@ -23,6 +23,12 @@ public abstract class Student {
 	public String getName() {
 		return name;
 	}
+	
+	public int getBirthYear() {
+		return birthYear;
+	}
+	
+	
 	public String getSurname() {
 		return surname;
 	}
@@ -44,6 +50,10 @@ public abstract class Student {
 	public String getObor() {
 		
 		return obor;
+	}
+	
+	public List<Integer> getGrades() {
+	    return grades;
 	}
 	
 	
