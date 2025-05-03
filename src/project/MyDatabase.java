@@ -39,18 +39,6 @@ public class MyDatabase {
 		students.add(student);
 	}
 	
-	/*public void deleteStudentTLI(int id) {
-		for(int i=0; i<students.size();i++) {
-			if(students.get(i).getID()==id) {
-				students.remove(i);
-			}
-			
-			System.out.println("Student smazán.");
-			return;
-		}
-		
-		System.out.println("Student nenalezen!!");
-	}*/
 	
 	public ArrayList<Student> getSortedStudents(){
 		students.sort(new StudentComparator());
@@ -170,7 +158,7 @@ public class MyDatabase {
 
 		    students.add(student);
 
-		    // Zkontrolujeme, jestli máme aktualizovat highestID
+		   
 		    if (id >= highestID) {
 		        highestID = id + 1;
 		    }

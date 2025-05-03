@@ -34,18 +34,47 @@ public class Main {
         	System.out.println("9 - Ulozeni dat do txt.souboru");
         	System.out.println("10 - Nacteni dat z txt.souboru");
         	System.out.println("11 - Ukončit program");
+        	System.out.println("------------------------------------------");
             prvek = sc.nextLine();
 
             switch (prvek) {
             case "1":
                 System.out.println("Zadej obor (TLI/KB):");
                 String type = sc.nextLine();
+
                 System.out.println("Zadej jméno:");
-                String name = sc.nextLine();
+                String name = sc.nextLine().trim();
+
+                if (!name.matches("[a-zA-Zá-žÁ-Ž]+")) {
+                    System.out.println("Chyba: Jméno může obsahovat pouze písmena.");
+                    break;
+                }
+                name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+
                 System.out.println("Zadej příjmení:");
-                String surname = sc.nextLine();
+                String surname = sc.nextLine().trim();
+
+                if (!surname.matches("[a-zA-Zá-žÁ-Ž]+")) {
+                    System.out.println("Chyba: Příjmení může obsahovat pouze písmena.");
+                    break;
+                }
+                surname = surname.substring(0, 1).toUpperCase() + surname.substring(1).toLowerCase();
+
                 System.out.println("Zadej rok narození:");
-                int birthYear = Integer.parseInt(sc.nextLine());
+                int birthYear;
+
+                try {
+                    birthYear = Integer.parseInt(sc.nextLine());
+
+                    if (birthYear < 1900 || birthYear > 2025) {
+                        System.out.println("Chyba: Zadej reálný rok narození v rozsahu 1900 až 2025.");
+                        break;
+                    }
+
+                } catch (NumberFormatException e) {
+                    System.out.println("Chyba: Rok narození musí být celé číslo.");
+                    break;
+                }
 
                 if (type.equalsIgnoreCase("TLI")) {
                     db.addStudentTLI(name, surname, birthYear, new ArrayList<>());
@@ -60,7 +89,14 @@ public class Main {
 
             case "2":
                 System.out.println("Zadej ID studenta:");
-                int id = Integer.parseInt(sc.nextLine());
+
+                int id;
+                try {
+                    id = Integer.parseInt(sc.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Chyba: ID musí být celé číslo.");
+                    break;
+                }
 
                 System.out.println("Zadej známku (1–5):");
                 try {
@@ -96,21 +132,32 @@ public class Main {
 
             case "4":
                 System.out.println("Zadej ID studenta ke smazání:");
-                int deleteId = Integer.parseInt(sc.nextLine());
 
-                
+                int deleteId;
+                try {
+                    deleteId = Integer.parseInt(sc.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Chyba: Zadejte reálné ID studenta.");
+                    break;
+                }
+
                 db.deleteStudent(deleteId);
 
-                
                 if (dbsql.connect()) {
                     dbsql.deleteStudentFromDB(deleteId);
                     dbsql.disconnect();
                 }
                 break;
-
+                
             case "5":
                 System.out.println("Zadej ID studenta pro výpis:");
-                int infoId = Integer.parseInt(sc.nextLine());
+                int infoId;
+                try {
+                    infoId = Integer.parseInt(sc.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Chyba: Zadejte reálné ID studenta.");
+                    break;
+                }
                 Student s = db.getStudent(infoId);
 
                 if (s != null) {
