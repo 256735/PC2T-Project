@@ -1,6 +1,5 @@
 # PC2T-Project 2025
 
-
 ---
 
 ## Funkce aplikace
@@ -20,7 +19,11 @@
 - Ukládání a načítání dat z TXT souboru
 - Ukládání a načítání dat ze SQLite databáze
   - Automaticky při spuštění a ukončení programu
-- Ošetření vstupních chyb (např. zadání textu místo čísla)
+- Ošetření všech vstupních chyb:
+  - ID a rok narození musí být celé číslo
+  - Známka musí být v rozsahu 1 až 5
+  - Jméno a příjmení pouze písmena, první písmeno velké
+  - Obor musí být platný (TLI / KB)
 
 ---
 
@@ -53,12 +56,13 @@ Aplikace využívá databázi SQLite. Soubor `students.db` se automaticky vytvo�
 
 ## Budoucí kroky pro vylepšení
 
-- Ošetřit všechny vstupy a výjimky, aby byl program odolný proti chybám uživatele
-- Automaticky upravit jméno a příjmení (např. Pavel Novák místo pAVEl nOVáK)
-- Vyladit vstupní validace (povolené pouze znaky, nečíselné vstupy)
-- Celkově zpřehlednit ovládání z pohledu uživatele
+- Drobné zpřesnění formátování vstupů
+- Zpřehlednění ovládání a výstupů v terminálu
+- Přidání kontroly duplicitních ID při načítání ze souboru
+- Možnost exportu dat do CSV
 
 ---
+
 ## Autoři
 
-- David Kaláb + Dominik Hejda 
+- David Kaláb + Dominik Hejda
