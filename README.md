@@ -52,14 +52,6 @@ Aplikace využívá databázi SQLite. Soubor `students.db` se automaticky vytvo�
 3. Spusťte `Main.java`
 4. Ovládání probíhá v textové konzoli pomocí menu
 
----
-
-## Budoucí kroky pro vylepšení
-
-- Drobné zpřesnění formátování vstupů
-- Zpřehlednění ovládání a výstupů v terminálu
-- Přidání kontroly duplicitních ID při načítání ze souboru
-- Možnost exportu dat do CSV
 
 ---
 
